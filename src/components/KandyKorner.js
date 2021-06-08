@@ -4,6 +4,7 @@ import { LocationList } from "./Locations/LocationList"
 import { LocationProvider } from "./Locations/LocationProvider"
 import { ProductProvider } from "./Products/ProductProvider";
 import { ProductList } from "./Products/ProductList";
+import { ProductTypeProvider } from "./ProductType/ProductTypeProvider";
 
 export const KandyKorner = () => {
     return (
@@ -14,9 +15,11 @@ export const KandyKorner = () => {
                 </Route>
             </LocationProvider>
             <ProductProvider>
+                <ProductTypeProvider>
                 <Route path="/products">
                     <ProductList/>
                 </Route>
+                </ProductTypeProvider>
             </ProductProvider>
         </>
     )

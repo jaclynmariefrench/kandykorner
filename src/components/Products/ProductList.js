@@ -1,10 +1,12 @@
 import React, { useContext, useEffect } from "react";
 import { ProductContext } from "./ProductProvider";
+import { ProductTypeContext } from "../ProductType/ProductTypeProvider";
 
 export const ProductList = () => {
     const { product, setProducts, getProducts } = useContext(ProductContext)
+    const { productType, getProductTypes } = useContext(ProductTypeContext)
 
-    useEffect(()=> { getProducts() }, []);
+    useEffect(()=> { getProducts().then(getProductTypes()) }, []);
 
     return (
         <section className="productList">
