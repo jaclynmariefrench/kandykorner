@@ -7,7 +7,9 @@ export const EmployeeForm = () => {
   const { addEmployee } = useContext(EmployeeContext);
   const { location, getLocations } = useContext(LocationContext);
 
-  const [employee, setEmployees] = useState({});
+  const [employee, setEmployees] = useState({
+
+  });
   const history = useHistory();
 
   const handleControlledInputChange = (event) => {
@@ -16,16 +18,35 @@ export const EmployeeForm = () => {
     setEmployees(newEmployee);
   };
 
+
   const handleSaveEmployee = () => {
+    if (employee.manager === "1") {
+      employee.manager = true
+    } 
+    if (employee.manager === "2") {
+      employee.manager = false
+    }
+  
+    if (employee.fullTime === "1") {
+      employee.fullTime = true
+    } 
+    if (employee.fullTime === "2") {
+      employee.fullTime = false
+    }
     if (parseInt(employee.locationId) === 0) {
       window.alert("Please select a location");
     } else {
       addEmployee({
         name: employee.name,
         locationId: parseInt(employee.locationId),
+        manager: employee.manager,
+        fullTime: employee.fullTime,
+        hourlyRate: parseFloat(employee.hourlyRate)
+        
       }).then(() => history.push("/employees"));
     }
   };
+
 
   useEffect(() => {
     getLocations();
@@ -80,8 +101,8 @@ export const EmployeeForm = () => {
             onChange={handleControlledInputChange}
           >
             <option key={employee.manager} value="0">Select option</option>
-            <option value="true"> true </option>
-            <option value="false">false</option>
+            <option value="1"> true </option>
+            <option value="2">false</option>
           </select>
         </div>
       </fieldset>
@@ -96,8 +117,8 @@ export const EmployeeForm = () => {
             onChange={handleControlledInputChange}
           >
             <option key={employee.fullTime} value="0">Select option</option>
-            <option value="true"> true </option>
-            <option value="false">false</option>
+            <option value="1"> true </option>
+            <option value="2">false</option>
           </select>
         </div>
       </fieldset>
