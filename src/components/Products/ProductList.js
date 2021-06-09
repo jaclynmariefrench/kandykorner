@@ -2,10 +2,12 @@ import React, { useContext, useEffect } from "react";
 import { ProductContext } from "./ProductProvider";
 import { ProductTypeContext } from "../ProductType/ProductTypeProvider";
 import "./Products.css";
+import { CustomerOrderContext } from "../CandyOrders/CustomerCandyProvider";
 
 export const ProductList = () => {
   const { product, setProducts, getProducts } = useContext(ProductContext);
   const { productType, getProductTypes } = useContext(ProductTypeContext);
+  const { customerOrder, addCustomerOrder } = useContext(CustomerOrderContext)
 
   useEffect(() => {
     getProducts().then(getProductTypes());
@@ -25,6 +27,8 @@ export const ProductList = () => {
               </div>
               <div>Price: {p.price}</div>
               <div>Type of candy: {p.productType.name}</div>
+              <button className="btn btn-primary" onClick={() => {
+              addCustomerOrder()}}>Purchase</button>
             </div>
           );
         })}
