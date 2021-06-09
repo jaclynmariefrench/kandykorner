@@ -30,7 +30,7 @@ export const EmployeeList = () => {
                 <div>
                   <h3>{e.name}</h3>
                 </div>
-                <div>{e.location.address}</div>
+                <div>{e.location.name}</div>
               </section>
             </>
           );
