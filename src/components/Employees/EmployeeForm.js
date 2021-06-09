@@ -69,9 +69,54 @@ export const EmployeeForm = () => {
           </select>
         </div>
       </fieldset>
-      <fieldset></fieldset>
-      <fieldset></fieldset>
-      <fieldset></fieldset>
+      <fieldset>
+        <div className="form_group">
+          <label htmlFor="manager">Is a manager:</label>
+          <select
+            value={employee.manager}
+            name="manager"
+            id="manager"
+            className="form-control"
+            onChange={handleControlledInputChange}
+          >
+            <option key={employee.manager} value="0">Select option</option>
+            <option value="true"> true </option>
+            <option value="false">false</option>
+          </select>
+        </div>
+      </fieldset>
+      <fieldset>
+      <div className="form_group">
+          <label htmlFor="fullTime">Is full time?</label>
+          <select
+            value={employee.fullTime}
+            name="fullTime"
+            id="fullTime"
+            className="form-control"
+            onChange={handleControlledInputChange}
+          >
+            <option key={employee.fullTime} value="0">Select option</option>
+            <option value="true"> true </option>
+            <option value="false">false</option>
+          </select>
+        </div>
+      </fieldset>
+      <fieldset>
+      <div className="form_group">
+          <label htmlFor="hourlyRate">Give hourly rate:</label>
+          <input
+            type="float"
+            id="hourlyRate"
+            name="hourlyRate"
+            required
+            autoFocus
+            className="form_control"
+            placeholder="hourly rate"
+            onChange={handleControlledInputChange}
+            defaultValue={employee.hourlyRate}
+          />
+        </div>
+      </fieldset>
     </form>
   );
 };
