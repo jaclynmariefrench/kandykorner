@@ -29,7 +29,7 @@ export const KandyKorner = () => {
       <Route path="/register">
         <Register />
       </Route>
-
+      
       
     </>
   );

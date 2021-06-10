@@ -1,10 +1,9 @@
 import React, { useContext, useEffect } from "react";
-import { useHistory } from "react-router";
 import { LocationContext } from "./LocationProvider";
 import "./Locations.css"
 
 export const LocationList = () => {
-    const { location, setLocations, getLocations } = useContext(LocationContext)
+    const { location, getLocations } = useContext(LocationContext)
 
     useEffect(()=> { getLocations() }, []);
 
