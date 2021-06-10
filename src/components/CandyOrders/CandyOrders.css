@@ -1,0 +1,27 @@
+.CustomerOrderList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    border-radius: 10px;
+    
+  }
+  .title_CustomerOrders {
+    text-align: center;
+}
+
+  .customerOrderDetail {
+      flex-basis: 28%;
+      margin: 1em;
+      padding: 1em;
+      border: 1px solid goldenrod;
+      border-radius: 10px;
+  }
+
+  .customerOrder_container {
+      border: 2px solid black;
+      border-radius: 10px;
+  }
+
+  b {
+      font-size: 20px;
+  }
