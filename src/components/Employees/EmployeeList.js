@@ -5,7 +5,7 @@ import { EmployeeContext } from "./EmployeeProvider";
 import "./Employees.css";
 
 export const EmployeeList = () => {
-  const { employee, setEmployees, getEmployees } = useContext(EmployeeContext);
+  const { employee, releaseEmployee, getEmployees } = useContext(EmployeeContext);
   const { location, getLocations } = useContext(LocationContext);
 
   const history = useHistory()
@@ -13,6 +13,13 @@ export const EmployeeList = () => {
   useEffect(() => {
     getEmployees().then(getLocations());
   }, []);
+
+  const handleRelease = () => {
+    releaseEmployee(employee.id).then(() => {
+      history.push("/employees");
+    });
+  };
+
 
   return (
     <section className="employee_container">
@@ -31,7 +38,9 @@ export const EmployeeList = () => {
                   <h3>{e.name}</h3>
                 </div>
                 <div>{e.location.name}</div>
+              <button onClick={handleRelease}>Fire Employee</button>
               </section>
+              
             </>
           );
         })}
