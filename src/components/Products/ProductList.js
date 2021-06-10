@@ -5,13 +5,15 @@ import "./Products.css";
 import { CustomerOrderContext } from "../CandyOrders/CustomerCandyProvider";
 
 export const ProductList = () => {
-  const { product, setProducts, getProducts } = useContext(ProductContext);
-  const { productType, getProductTypes } = useContext(ProductTypeContext);
-  const { customerOrder, addCustomerOrder } = useContext(CustomerOrderContext)
+  const { product, getProducts } = useContext(ProductContext);
+  const { getProductTypes } = useContext(ProductTypeContext);
+  const { addCustomerOrder } = useContext(CustomerOrderContext)
+
 
   useEffect(() => {
     getProducts().then(getProductTypes());
   }, []);
+  
 
   return (
     <section className="product_container">
@@ -28,7 +30,12 @@ export const ProductList = () => {
               <div>Price: {p.price}</div>
               <div>Type of candy: {p.productType.name}</div>
               <button className="btn btn-primary" onClick={() => {
-              addCustomerOrder()}}>Purchase</button>
+                addCustomerOrder({
+                  productId: p.id,
+                  customerId: parseInt(localStorage.getItem("kandy_customer"))
+                })
+              }
+              }>Purchase</button>
             </div>
           );
         })}

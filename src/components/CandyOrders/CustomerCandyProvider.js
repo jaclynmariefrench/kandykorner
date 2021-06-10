@@ -6,13 +6,13 @@ export const CustomerOrderProvider = (props) => {
     const [customerOrder, setCustomerOrders] = useState([])
 
     const getCustomerOrders = () => {
-        return fetch("http://localhost:8088/candyOrder?_expand=product&_expand=customer")
+        return fetch("http://localhost:8088/customerOrder?_expand=product&_expand=customer")
         .then(res=> res.json())
         .then(setCustomerOrders)
     }
 
     const addCustomerOrder = customerOrderObj => {
-        return fetch("http://localhost:8088/candyOrder", {
+        return fetch("http://localhost:8088/customerOrder", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
