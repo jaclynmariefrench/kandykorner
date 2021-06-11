@@ -1,19 +1,30 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ProductContext } from "./ProductProvider";
 import { ProductTypeContext } from "../ProductType/ProductTypeProvider";
 import "./Products.css";
 import { CustomerOrderContext } from "../CandyOrders/CustomerCandyProvider";
 
 export const ProductList = () => {
-  const { product, getProducts } = useContext(ProductContext);
+  const { product, getProducts, setSearchTerms, searchTerms } = useContext(ProductContext);
   const { getProductTypes } = useContext(ProductTypeContext);
   const { addCustomerOrder } = useContext(CustomerOrderContext)
 
+  const [ filteredProducts, setFiltered ] = useState([])
 
   useEffect(() => {
     getProducts().then(getProductTypes());
   }, []);
   
+  useEffect(() => {
+    if (searchTerms !== "") {
+      // If the search field is not blank, display matching animals
+      const subset = product.filter(p => p.name.toLowerCase().includes(searchTerms))
+      setFiltered(subset)
+    } else {
+      // If the search field is blank, display all animals
+      setFiltered(product)
+    }
+  }, [searchTerms, product])
 
   return (
     <section className="product_container">
@@ -21,7 +32,7 @@ export const ProductList = () => {
         <h2>Products</h2>
       </header>
       <div className="ProductList">
-        {product.map((p) => {
+        {filteredProducts.map((p) => {
           return (
             <div className="ProductDetail">
               <div>

@@ -11,15 +11,15 @@ import { EmployeeList } from "./Employees/EmployeeList";
 import { CustomerOrderProvider } from "./CandyOrders/CustomerCandyProvider";
 import { CustomerOrderList } from "./CandyOrders/CustomerOrderList";
 import { CustomerProvider } from "./Customers/CustomerProvider";
-import { kandyLanding } from "./KandyKorner/kandyKornerLanding";
 import { CustomerList } from "./Customers/CustomerList";
+import { ProductSearch } from "./Products/InventorySearch";
 
 export const ApplicationViews = () => {
   return (
     <>
       {/* LANDING */}
       <Route exact path="/">
-        <kandyLanding />
+        {/* <kandyLanding /> */}
       </Route>
       {/* LOCATIONS */}
       <LocationProvider>
@@ -32,6 +32,7 @@ export const ApplicationViews = () => {
         <ProductTypeProvider>
           <CustomerOrderProvider>
             <Route path="/products">
+              <ProductSearch/>
               <ProductList />
             </Route>
           </CustomerOrderProvider>
