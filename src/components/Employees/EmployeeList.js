@@ -1,11 +1,11 @@
 import React, { useContext, useEffect } from "react";
-import { useHistory } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { LocationContext } from "../Locations/LocationProvider";
 import { EmployeeContext } from "./EmployeeProvider";
 import "./Employees.css";
 
 export const EmployeeList = () => {
-  const { employee, releaseEmployee, getEmployees } = useContext(EmployeeContext);
+  const { employee, releaseEmployee, getEmployees, setEmployees } = useContext(EmployeeContext);
   const { location, getLocations } = useContext(LocationContext);
 
   const history = useHistory()
@@ -14,8 +14,19 @@ export const EmployeeList = () => {
     getEmployees().then(getLocations());
   }, []);
 
-  const handleRelease = () => {
-    releaseEmployee(employee.id).then(() => {
+  const { employeeId } = useParams();
+
+  // useEffect(() => {
+  //   const thisEmployee = employee.find((e) => e.id === parseInt(employeeId)) || {
+  //     location: {},
+  //   };
+
+  //   setEmployees(thisEmployee);
+  // }, [employeeId]);
+
+  const handleRelease = (employeeId) => {
+    
+    releaseEmployee(employeeId).then(() => {
       history.push("/employees");
     });
   };
@@ -33,12 +44,14 @@ export const EmployeeList = () => {
         {employee.map((e) => {
           return (
             <>
-              <section className="EmployeeDetail">
+              <section className="EmployeeDetail" value={e.id}>
                 <div>
                   <h3>{e.name}</h3>
                 </div>
                 <div>{e.location.name}</div>
-              <button onClick={handleRelease}>Fire Employee</button>
+              <button onClick={()=> {
+                handleRelease(e.id)
+              }}>Fire Employee</button>
               </section>
               
             </>
