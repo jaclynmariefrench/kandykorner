@@ -13,13 +13,14 @@ import { CustomerOrderList } from "./CandyOrders/CustomerOrderList";
 import { CustomerProvider } from "./Customers/CustomerProvider";
 import { CustomerList } from "./Customers/CustomerList";
 import { ProductSearch } from "./Products/InventorySearch";
+import { KandyLanding } from "./KandyKorner/kandyKornerLanding";
 
 export const ApplicationViews = () => {
   return (
     <>
       {/* LANDING */}
       <Route exact path="/">
-        {/* <kandyLanding /> */}
+        <KandyLanding />
       </Route>
       {/* LOCATIONS */}
       <LocationProvider>

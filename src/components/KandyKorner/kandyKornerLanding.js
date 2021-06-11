@@ -1,11 +1,11 @@
 import React from "react";
 
-export const kandyLanding = () => {
+export const KandyLanding = () => {
     return (
         <>
-        {/* <header className="title_kandy"><b>KANDY KORNER</b></header>
-        <section>Come and get the sweets!!</section> */}
-        <div>Heyyy</div>
+        <header className="title_kandy"><b>KANDY KORNER</b></header>
+        <section>Come and get the sweets!!</section> 
+        
         </>
     )
 }
